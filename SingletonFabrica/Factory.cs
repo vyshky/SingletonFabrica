@@ -1,30 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
+using System.Runtime.Serialization;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace SingletonFabrica
 {
-    public class Factory
+    public class FactoryClones
     {
-        public List<ICloning> _clones;
+        private static FactoryClones _instance;
+        private FactoryClones()
+        { }
 
-        public Factory(List<ICloning> clones)
+        public static FactoryClones GetInstance()
         {
-            _clones = clones;
-        }
-
-        public ICloning GetClone(int num)
-        {
-            switch (num)
+            if (_instance == null)
             {
-                case 1: return Clone.GetClone(); break;
-                case 2: return Clone.GetClone(); break;
-                case 3: return Clone.GetClone(); break;
-                case 4: return Clone.GetClone(); break;
+                _instance = new FactoryClones();
             }
-            return null;
+            return _instance;
         }
+
+        public string Say(IClone @interface)
+        {
+            return @interface.Say();
+        }
+
     }
 }

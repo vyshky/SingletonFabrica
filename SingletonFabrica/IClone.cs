@@ -8,5 +8,8 @@ namespace SingletonFabrica
 {
     public interface IClone
     {
+        public IClone Clone();
+        public IClone SuperClone();
+        public string Say();
     }
 }
